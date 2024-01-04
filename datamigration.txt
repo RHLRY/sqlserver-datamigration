@@ -1,0 +1,27 @@
+ the three SQL queries for backing up a database, retrieving backup header information, and restoring a database:
+
+Backup Database:
+
+This query performs a full database backup to a specified disk location with options for formatting, initialization, checksum, compression, and progress statistics.
+sql
+Copy code
+BACKUP DATABASE YourDatabaseName
+TO DISK = 'C:\Your\Backup\Path\YourFullBackupFile.bak'
+WITH FORMAT, INIT, CHECKSUM, COMPRESSION = PAGE, STATS = 1;
+Replace YourDatabaseName with your actual database name.
+Restore Header Information:
+
+This query retrieves information about the backup header without restoring the database. It's useful for checking details such as database name, backup start and finish dates, and the presence of a checksum.
+sql
+Copy code
+RESTORE HEADERONLY
+FROM DISK = 'C:\Your\Backup\Path\YourFullBackupFile.bak';
+Restore Database:
+
+This query restores a database from a specified backup file with options for overwriting existing databases, specifying the file location, and checking the backup's integrity.
+sql
+Copy code
+RESTORE DATABASE YourRestoredDatabase
+FROM DISK = 'C:\Your\Backup\Path\YourFullBackupFile.bak'
+WITH REPLACE, STATS = 1;
+Replace YourRestoredDatabase with the desired name for the restored database.
